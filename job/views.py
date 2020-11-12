@@ -4,9 +4,12 @@ from .models import Job , Category
 
 # Create your views here.
 def job_list(request):
-    jobs =  Job.objects.all()
-    return HttpResponse(jobs)
+    jobs =  Job.objects.all() 
+    context = {'jobs' : jobs}
+    return render(request , 'job/index.html' , context)
 
 
 def job_detail(request , id):
-    return HttpResponse("hello world") 
+    job = Job.objects.get(id=id) 
+    context = {'job' : job}
+    return render(request , 'job/detail.html' , context)
